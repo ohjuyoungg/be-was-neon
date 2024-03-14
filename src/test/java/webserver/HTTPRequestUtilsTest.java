@@ -1,7 +1,7 @@
 package webserver;
 
 import org.junit.jupiter.api.Test;
-import utils.HTTPRequestUtils;
+import utils.HttpRequestUtils;
 
 import java.util.Map;
 
@@ -12,7 +12,7 @@ class HTTPRequestUtilsTest {
     @Test
     void testParseQueryString() {
         String queryString1 = "userId=johndoe&password=password123&name=John+Doe&email=johndoe@example.com";
-        Map<String, String> params1 = HTTPRequestUtils.parseQueryString(queryString1);
+        Map<String, String> params1 = HttpRequestUtils.parseQueryString(queryString1);
         assertThat(params1)
                 .containsEntry("userId", "johndoe")
                 .containsEntry("password", "password123")
