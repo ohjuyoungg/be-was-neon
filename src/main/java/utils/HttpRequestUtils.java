@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
-public class HTTPRequestUtils {
+public class HttpRequestUtils {
     public static Map<String, String> parseQueryString(String queryString) {
         return parseValues(queryString, "&");
     }
