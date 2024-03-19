@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.*;
 class HttpRequestUtilsTest {
 
     @Test
-    @DisplayName("")
+    @DisplayName("주어진 쿼리 스트링을 파싱하여 맵 형태로 반환한다.")
     void testParseQueryString() {
         String queryString1 = "userId=johndoe&password=password123&name=John+Doe&email=johndoe@example.com";
         Map<String, String> params1 = HttpRequestUtils.parseQueryString(queryString1);
