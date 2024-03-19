@@ -8,10 +8,10 @@ import java.net.URLDecoder;
 
 public class HttpRequestUtils {
     public static Map<String, String> parseQueryString(String queryString) {
-        return parseValues(queryString, "&");
+        return parseKeyValues(queryString, "&");
     }
 
-    private static Map<String, String> parseValues(String values, String separator) {
+    private static Map<String, String> parseKeyValues(String values, String separator) {
         if (values == null || values.isEmpty()) {
             return null;
         }
