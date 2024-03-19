@@ -17,8 +17,15 @@ public class HttpResponse {
         return buffer.toByteArray();
     }
 
+    public void response302Header(OutputStream out) throws IOException {
+        DataOutputStream dos = new DataOutputStream(out);
+        dos.writeBytes("HTTP/1.1 302 Found\r\n");
+        dos.writeBytes("Location: /index.html");
+        dos.writeBytes("\r\n");
+        dos.flush();
+    }
 
-    public void sendResponse(OutputStream out, byte[] body, String contentType) throws IOException {
+    public void response200Header(OutputStream out, byte[] body, String contentType) throws IOException {
         DataOutputStream dos = new DataOutputStream(out);
         dos.writeBytes("HTTP/1.1 200 OK \r\n");
         dos.writeBytes("Content-Type: " + contentType + "\r\n");
@@ -28,7 +35,6 @@ public class HttpResponse {
         dos.flush();
     }
 
-    // 404 Not Found 응답을 전송하는 메서드
     public void send404NotFound(OutputStream out) throws IOException {
         String errorMessage = "404 Not Found";
         DataOutputStream dos = new DataOutputStream(out);
