@@ -29,7 +29,7 @@ public class HttpRequest {
     }
 
     public void registrationParams() {
-        if (url.startsWith("/registration/index.html?")) {
+        if (url.startsWith("/create")) {
             Map<String, String> params = parseParamsFromURL(url);
             User user = createUserFromParams(params);
             Database.addUser(user);
