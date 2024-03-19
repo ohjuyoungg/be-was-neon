@@ -32,7 +32,7 @@ public class RequestHandler implements Runnable {
         try (InputStream in = connection.getInputStream(); OutputStream out = connection.getOutputStream()) {
             BufferedReader br = new BufferedReader(new InputStreamReader(in));
             HttpRequest httpRequest = new HttpRequest(readRequestLog(br));
-            httpRequest.registrationParams();
+            httpRequest.registrationParamValue();
             HttpResponse httpResponse = new HttpResponse();
 
             // 요청된 파일을 읽어들이고 적절한 Content-Type 설정 후 응답
