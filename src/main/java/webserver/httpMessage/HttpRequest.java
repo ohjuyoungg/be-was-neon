@@ -28,7 +28,7 @@ public class HttpRequest {
         return buffer.toByteArray();
     }
 
-    public void registrationParams() {
+    public void registrationParamValue() {
         if (url.startsWith("/registration/index.html?")) {
             Map<String, String> params = parseParamsFromURL(url);
             User user = createUserFromParams(params);
