@@ -1,5 +1,6 @@
 package webserver;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import utils.HttpRequestUtils;
 
@@ -7,9 +8,10 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.*;
 
-class HTTPRequestUtilsTest {
+class HttpRequestUtilsTest {
 
     @Test
+    @DisplayName("")
     void testParseQueryString() {
         String queryString1 = "userId=johndoe&password=password123&name=John+Doe&email=johndoe@example.com";
         Map<String, String> params1 = HttpRequestUtils.parseQueryString(queryString1);
