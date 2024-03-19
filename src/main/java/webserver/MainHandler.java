@@ -10,13 +10,13 @@ import webserver.httpMessage.HttpRequest;
 import webserver.httpMessage.HttpResponse;
 
 
-public class RequestHandler implements Runnable {
+public class MainHandler implements Runnable {
 
-    private static final Logger log = LoggerFactory.getLogger(RequestHandler.class);
+    private static final Logger log = LoggerFactory.getLogger(MainHandler.class);
     private final Socket connection;
     private static String url;
 
-    public RequestHandler(Socket connectionSocket) {
+    public MainHandler(Socket connectionSocket) {
         this.connection = connectionSocket;
     }
 
@@ -35,7 +35,7 @@ public class RequestHandler implements Runnable {
             File file = new File("src/main/resources/static" + url);
 
             if (file.exists() && !file.isDirectory()) {
-                byte[] body = httpRequest.readFileContents(file);
+                byte[] body = httpResponse.readFileContents(file);
                 ContentType contentType = new ContentType();
                 String type = contentType.getContentType(url);
                 httpResponse.sendResponse(out, body, type);
