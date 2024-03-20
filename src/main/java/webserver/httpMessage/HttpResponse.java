@@ -5,18 +5,6 @@ import java.io.*;
 
 public class HttpResponse {
 
-    public byte[] readFileContents(File file) throws IOException {
-        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-        try (InputStream in = new FileInputStream(file)) {
-            byte[] bytes = new byte[(int) file.length()];
-            int bytesRead;
-            while ((bytesRead = in.read(bytes, 0, bytes.length)) != -1) {
-                buffer.write(bytes, 0, bytesRead);
-            }
-        }
-        return buffer.toByteArray();
-    }
-
     public void response302Header(OutputStream out) throws IOException {
         DataOutputStream dos = new DataOutputStream(out);
         dos.writeBytes("HTTP/1.1 302 Found\r\n");
