@@ -13,12 +13,12 @@ class HttpRequestUtilsTest {
     @Test
     @DisplayName("주어진 쿼리 스트링을 파싱하여 맵 형태로 반환한다.")
     void testParseQueryString() {
-        String queryString1 = "userId=johndoe&password=password123&name=John+Doe&email=johndoe@example.com";
+        String queryString1 = "userId=Juju&password=password123&name=Juju&email=Juju@example.com";
         Map<String, String> params1 = HttpRequestUtils.parseQueryString(queryString1);
         assertThat(params1)
-                .containsEntry("userId", "johndoe")
+                .containsEntry("userId", "Juju")
                 .containsEntry("password", "password123")
-                .containsEntry("name", "John Doe")
-                .containsEntry("email", "johndoe@example.com");
+                .containsEntry("name", "Juju")
+                .containsEntry("email", "Juju@example.com");
     }
 }
