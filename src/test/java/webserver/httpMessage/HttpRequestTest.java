@@ -1,38 +1,43 @@
 package webserver.httpMessage;
 
-import model.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Map;
 import java.util.HashMap;
-
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class HttpRequestTest {
 
     @Test
-    @DisplayName("URL이 '/create'로 시작하는지 확인한다.")
-    void testIsCreateRequest() {
-        HttpRequest httpRequest = new HttpRequest("/create");
-        assertThat(httpRequest.isCreateRequest()).isTrue();
-    }
+    @DisplayName("HttpRequest 객체가 올바르게 생성되는지 확인")
+    void testHttpRequestCreation() {
+        // Given
+        String startLine = "GET /test?param1=value1&param2=value2 HTTP/1.1";
+        Map<String, String> header = new HashMap<>();
+        header.put("Host", "localhost");
+        header.put("User-Agent", "Mozilla/5.0");
+        Map<String, String> body = new HashMap<>();
+        body.put("field1", "value1");
+        body.put("field2", "value2");
 
-    @Test
-    @DisplayName("주어진 맵으로부터 유저 객체를 생성한다.")
-    void testCreateUserFromParams() {
-        Map<String, String> params = new HashMap<>();
-        params.put("userId", "testId");
-        params.put("password", "testPassword");
-        params.put("name", "Test User");
-        params.put("email", "test@example.com");
+        // When
+        HttpRequest httpRequest = new HttpRequest(startLine, header, body);
 
-        User user = HttpRequest.createUserFromParams(params);
+        // Then
+        assertThat(httpRequest).isNotNull();
+        assertThat(httpRequest.getRequestLine().getMethod().toString()).isEqualTo("GET");
+        assertThat(httpRequest.getRequestLine().getPath()).isEqualTo("/test");
+        assertThat(httpRequest.getRequestLine().getProtocol()).isEqualTo("HTTP/1.1");
 
-        assertThat(user.getUserId()).isEqualTo("testId");
-        assertThat(user.getPassword()).isEqualTo("testPassword");
-        assertThat(user.getName()).isEqualTo("Test User");
-        assertThat(user.getEmail()).isEqualTo("test@example.com");
+        assertThat(httpRequest.getRequestLine().getParams()).containsEntry("param1", "value1")
+                .containsEntry("param2", "value2");
+
+        assertThat(httpRequest.getHeader()).containsEntry("Host", "localhost")
+                .containsEntry("User-Agent", "Mozilla/5.0");
+
+        assertThat(httpRequest.getBody()).containsEntry("field1", "value1")
+                .containsEntry("field2", "value2");
     }
 }
