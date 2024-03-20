@@ -2,7 +2,7 @@ package webserver;
 
 public class ContentType {
 
-    public String getContentType(String url) {
+    public static String getContentType(String url) {
         String[] parts = url.split("\\.");
         String extension = parts[parts.length - 1];
         switch (extension) {
@@ -20,7 +20,7 @@ public class ContentType {
             case "gif":
                 return "image/gif";
             case "svg":
-                return "image/svg+xml"; // SVG 파일에 대한 Content-Type 추가
+                return "image/svg+xml";
             default:
                 return "application/octet-stream";
         }
