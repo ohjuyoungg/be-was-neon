@@ -2,7 +2,7 @@ package utils;
 
 import java.io.*;
 
-public class FileSerializer {
+public class FileUtil {
 
     public static byte[] toByteArray(File file) throws IOException {
         ByteArrayOutputStream buffer = new ByteArrayOutputStream();
