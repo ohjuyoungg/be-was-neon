@@ -1,4 +1,4 @@
-package webserver.httpMessage;
+package webserver.httpResponse;
 
 
 import java.io.*;
@@ -11,6 +11,13 @@ public class HttpResponse {
         dos.writeBytes("Location: /index.html\r\n");
         dos.writeBytes("Set-Cookie: " + cookie);
         dos.writeBytes("\r\n");
+        dos.flush();
+    }
+
+    public void response302HeaderWithoutCookie(OutputStream out) throws IOException {
+        DataOutputStream dos = new DataOutputStream(out);
+        dos.writeBytes("HTTP/1.1 302 Found\r\n");
+        dos.writeBytes("Location: /login/failed.html\r\n");
         dos.flush();
     }
 
