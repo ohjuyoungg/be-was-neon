@@ -2,14 +2,13 @@ package webserver.httpRequest;
 
 import model.HttpMethod;
 import utils.IOUtils;
-import webserver.httpMessage.HttpRequest;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static webserver.httpMessage.HttpRequest.getMethod;
+import static webserver.httpRequest.HttpRequest.getMethod;
 
 
 public class HttpRequestProcessor {
@@ -67,7 +66,6 @@ public class HttpRequestProcessor {
         }
         return body;
     }
-
 }
 
 
