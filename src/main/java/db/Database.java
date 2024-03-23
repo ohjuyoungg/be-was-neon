@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Database {
-    private static Map<String, User> users = new ConcurrentHashMap<>(); // thread-safe
+    private static Map<String, User> users = new ConcurrentHashMap<>();
 
     public static void addUser(User user) {
         users.put(user.getUserId(), user);

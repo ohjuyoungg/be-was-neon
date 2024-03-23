@@ -18,12 +18,21 @@ public class HttpRequest {
         this.body = body;
     }
 
-    public static User buildUser(Map<String, String> params) {
-        String userId = params.get("userId");
-        String password = params.get("password");
-        String name = params.get("name");
-        String email = params.get("email");
+    public static User buildUser(Map<String, String> body) {
+        String userId = body.get("userId");
+        String password = body.get("password");
+        String name = body.get("name");
+        String email = body.get("email");
         return new User(userId, password, name, email);
+    }
+
+
+    public static HttpMethod getMethod(String startLine) {
+        String[] tokens = startLine.split(" ");
+        if (tokens.length != 3) {
+            throw new IllegalArgumentException("HTTP Request start line은 반드시 method + path + protocol로 구성되어야 합니다.");
+        }
+        return HttpMethod.of(tokens[0]);
     }
 
     public RequestLine getRequestLine() {

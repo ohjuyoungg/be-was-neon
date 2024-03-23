@@ -5,6 +5,15 @@ import java.io.*;
 
 public class HttpResponse {
 
+    public void response302HeaderWithCookie(OutputStream out, String cookie) throws IOException {
+        DataOutputStream dos = new DataOutputStream(out);
+        dos.writeBytes("HTTP/1.1 302 Found\r\n");
+        dos.writeBytes("Location: /index.html\r\n");
+        dos.writeBytes("Set-Cookie: " + cookie);
+        dos.writeBytes("\r\n");
+        dos.flush();
+    }
+
     public void response302Header(OutputStream out) throws IOException {
         DataOutputStream dos = new DataOutputStream(out);
         dos.writeBytes("HTTP/1.1 302 Found\r\n");
