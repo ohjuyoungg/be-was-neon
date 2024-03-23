@@ -37,7 +37,7 @@ public class WebServer {
         }
 
         try (ServerSocket listenSocket = new ServerSocket(port)) {
-            logger.info("Web Application Server started {} port.", port);
+            logger.info("Web Application Server started {} port. Go into http://localhost:{}/index.html", port, port);
 
             Socket connection;
             ExecutorService executorService = Executors.newFixedThreadPool(CORE_POOL_SIZE);
