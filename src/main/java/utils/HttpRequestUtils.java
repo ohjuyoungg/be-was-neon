@@ -14,62 +14,6 @@ import java.net.URLDecoder;
 
 public class HttpRequestUtils {
 
-    public static HttpRequest parse(BufferedReader br) throws IOException {
-        StringBuilder rawRequestBuilder = new StringBuilder();
-        String currentLine;
-        while ((currentLine = br.readLine()) != null) {
-            rawRequestBuilder.append(currentLine).append("\n");
-            if (currentLine.isEmpty()) {
-                break;
-            }
-        }
-
-        String rawRequest = rawRequestBuilder.toString();
-
-        String[] lines = rawRequest.split("\n");
-
-        // Start line
-        String startLine = lines[0];
-
-        // Headers
-        Map<String, String> headers = new HashMap<>();
-        int bodyStartIndex = -1;
-        for (int i = 1; i < lines.length; i++) {
-            if (lines[i].isEmpty()) {
-                bodyStartIndex = i + 1;
-                break;
-            }
-            String[] headerParts = lines[i].split(": ", 2);
-            headers.put(headerParts[0], headerParts[1]);
-        }
-
-        if (HttpMethod.POST == getMethod(startLine)) {
-            String bodyLine = IOUtils.readData(br, Integer.parseInt(headers.get("Content-Length")));
-        }
-
-        // Body
-        Map<String, String> body = new HashMap<>();
-        if (bodyStartIndex != -1 && bodyStartIndex < lines.length) {
-            String bodyData = lines[bodyStartIndex];
-            String[] bodyParts = bodyData.split("&");
-            for (String part : bodyParts) {
-                String[] keyValue = part.split("=");
-                body.put(keyValue[0], keyValue[1]);
-            }
-        }
-
-        return new HttpRequest(startLine, headers, body);
-    }
-
-    public static HttpMethod getMethod(String startLine) {
-        String[] tokens = startLine.split(" ");
-        if (tokens.length != 3) {
-            throw new IllegalArgumentException("HTTP Request start line은 반드시 method + path + protocol로 구성되어야 합니다.");
-        }
-        return HttpMethod.of(tokens[0]);
-    }
-
-
     public static Map<String, String> parseQueryString(String queryString) {
         return parseKeyValues(queryString, "&");
     }
