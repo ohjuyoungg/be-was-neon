@@ -1,4 +1,3 @@
-// MainHandler.java
 package webserver.handler;
 
 import java.io.*;
@@ -6,8 +5,8 @@ import java.net.Socket;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import webserver.httpMessage.HttpRequest;
-import webserver.httpMessage.HttpResponse;
+import webserver.httpRequest.HttpRequest;
+import webserver.httpResponse.HttpResponse;
 import webserver.httpRequest.HttpRequestProcessor;
 
 public class MainHandler implements Runnable {
