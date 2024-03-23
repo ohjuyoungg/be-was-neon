@@ -7,6 +7,6 @@ public class IOUtils {
     public static String readData(BufferedReader bufferedReader, int contentLength) throws IOException {
         char[] body = new char[contentLength];
         bufferedReader.read(body, 0, contentLength);
-        return String.copyValueOf(body);
+        return new String(body);
     }
 }
