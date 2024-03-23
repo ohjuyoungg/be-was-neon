@@ -7,6 +7,7 @@ import java.util.concurrent.Executors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import webserver.handler.MainHandler;
 
 public class WebServer {
 
@@ -39,8 +40,9 @@ public class WebServer {
             logger.info("Web Application Server started {} port.", port);
 
             Socket connection;
+            ExecutorService executorService = Executors.newFixedThreadPool(CORE_POOL_SIZE);
+
             while ((connection = listenSocket.accept()) != null) {
-                ExecutorService executorService = Executors.newFixedThreadPool(CORE_POOL_SIZE);
                 executorService.execute(new MainHandler(connection));
             }
         }
