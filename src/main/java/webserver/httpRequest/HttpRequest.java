@@ -1,4 +1,4 @@
-package webserver.httpMessage;
+package webserver.httpRequest;
 
 import model.HttpMethod;
 import model.User;
