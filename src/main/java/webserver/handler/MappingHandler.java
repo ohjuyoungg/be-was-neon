@@ -37,7 +37,7 @@ public class MappingHandler {
     private void handleGetRequest(String path, HttpResponse response, OutputStream out) throws IOException {
         File file = new File(STATIC_PATH + path);
         if (file.exists() && !file.isDirectory()) {
-            serveGetStaticFile(file, response, out);
+            serveStaticFile(file, response, out);
         } else {
             log.error("File not found: " + path);
             response.send404NotFound(out);
@@ -86,7 +86,7 @@ public class MappingHandler {
         response.send404NotFound(out);
     }
 
-    private void serveGetStaticFile(File file, HttpResponse response, OutputStream out) throws IOException {
+    private void serveStaticFile(File file, HttpResponse response, OutputStream out) throws IOException {
         byte[] body = FileUtil.toByteArray(file);
         String type = ContentType.getContentType(file.getName());
         response.response200Header(out, body, type);
